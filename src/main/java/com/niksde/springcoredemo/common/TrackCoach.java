@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy
+//@Lazy
 //@Primary
 public class TrackCoach implements Coach {
 
