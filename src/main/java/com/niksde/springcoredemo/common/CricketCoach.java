@@ -13,16 +13,16 @@ public class CricketCoach implements Coach {
    }
 
    // init method
-    @PostConstruct
-    public void doStartup() {
-        System.out.println("In startup: " + getClass().getSimpleName());
-    }
+//    @PostConstruct
+//    public void doStartup() {
+//        System.out.println("In startup: " + getClass().getSimpleName());
+//    }
 
     // destroy method
-    @PreDestroy
-    public void doCleanup() {
-        System.out.println("In destroy: " + getClass().getSimpleName());
-    }
+//    @PreDestroy
+//    public void doCleanup() {
+//        System.out.println("In destroy: " + getClass().getSimpleName());
+//    }
 
     @Override
     public String getDailyWorkout() {
