@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy
+//@Lazy
 //@Primary
 public class TrackCoach implements Coach {
 
     public TrackCoach() {
-        System.out.println("In constructor:"+ getClass().getSimpleName());
+        System.out.println("In constructor: "+ getClass().getSimpleName());
     }
 
     @Override
