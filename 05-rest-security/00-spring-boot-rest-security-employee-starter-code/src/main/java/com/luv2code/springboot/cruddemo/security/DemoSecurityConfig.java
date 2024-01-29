@@ -5,35 +5,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
-    UserDetails john = User.builder()
-            .username("john")
-            .password("{noop}test123")
-            .roles("EMPLOYEE")
-            .build();
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-    UserDetails mary = User.builder()
-            .username("mary")
-            .password("{noop}test123")
-            .roles("EMPLOYEE", "MANAGER")
-            .build();
+        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT user_id, pw, active FROM members WHERE user_id=?");
 
-    UserDetails susan = User.builder()
-            .username("susan")
-            .password("{noop}test123")
-            .roles("EMPLOYEE", "MANAGER", "ADMIN")
-            .build();
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT user_id, role FROM roles WHERE user_id=?");
 
-    return new InMemoryUserDetailsManager(john, mary, susan);
+        return jdbcUserDetailsManager;
     }
 
     @Bean
@@ -52,5 +41,30 @@ public class DemoSecurityConfig {
 
         return http.build();
     }
+
+    //    @Bean
+//    public InMemoryUserDetailsManager userDetailsManager() {
+//
+//    UserDetails john = User.builder()
+//            .username("john")
+//            .password("{noop}test123")
+//            .roles("EMPLOYEE")
+//            .build();
+//
+//    UserDetails mary = User.builder()
+//            .username("mary")
+//            .password("{noop}test123")
+//            .roles("EMPLOYEE", "MANAGER")
+//            .build();
+//
+//    UserDetails susan = User.builder()
+//            .username("susan")
+//            .password("{noop}test123")
+//            .roles("EMPLOYEE", "MANAGER", "ADMIN")
+//            .build();
+//
+//    return new InMemoryUserDetailsManager(john, mary, susan);
+//    }
+
 
 }
