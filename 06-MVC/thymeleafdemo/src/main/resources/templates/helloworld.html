@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <title>Thymleaf Demo</title>
 
-    <!-- reference CSS file -->
-    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+
+<!--            var param = /*[[${param}]]*/ 'default';-->
+<!--            console.log("param",param);-->
+
+<!--        /*]]>*/-->
+<!--    </script>-->
 </head>
 <body>
-    <p th:text="'Time on the server is ' + ${theDate}" class="funny" />
+Hello World of Spring!
+<br><br>
+Student name: <span th:text="${param.studentName}"/>
+
+<br><br>
+The message: <span th:text="${message}"/>
 </body>
 </html>
