@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Form Validation</title>
+</head>
+<body>
+<h3>Customer Validated</h3>
+This customer is confirmed:  <span th:text="${customer.firstName + ' ' + customer.lastName}"/>
+<br><br>
+Free passes: <span th:text="${customer.freePasses}"/>
+<br><br>
+Postal code: <span th:text="${customer.postalCode}"/>
+<br><br>
+Course code: <span th:text="${customer.courseCode}"/>
+
+
+</body>
+</html>
