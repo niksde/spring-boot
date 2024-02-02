@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+
+    <style>
+        .failed {
+        color: red;
+        }
+    </style>
+</head>
+<body>
+<h3>My Custom Login Page</h3>
+    <form action="#" th:action="@{/authenticateTheUser}" method="POST">
+        <span th:if="${param.error}">
+            <i class="failed">Sorry! You entered invalid username/password.</i>
+        </span>
+
+        <p>
+            User name: <input type="text" name="username" />
+        </p>
+        <p>
+            Password: <input type="password" name="password" />
+        </p>
+        <input type="Submit" value="Login">
+    </form>
+</body>
+</html>
