@@ -41,11 +41,11 @@ CREATE TABLE `course` (
   
   UNIQUE KEY `TITLE_UNIQUE` (`title`),
   
-  KEY `FK_INSTRUCTOR_idx` (`instructor_id`),
+  KEY `FK_INSTRUCTOR_idx` (`instructor_id`), -- index to improve join using foreign key 
   
   CONSTRAINT `FK_INSTRUCTOR` 
   FOREIGN KEY (`instructor_id`) 
-  REFERENCES `instructor` (`id`) 
+  REFERENCES `instructor` (`id`)  
   
   ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
