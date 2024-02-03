@@ -4,6 +4,7 @@ import com.niksde.cruddemo.dao.AppDAO;
 import com.niksde.cruddemo.entity.Course;
 import com.niksde.cruddemo.entity.Instructor;
 import com.niksde.cruddemo.entity.InstructorDetail;
+import com.niksde.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +22,51 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-//			createInstructor(appDAO);
+//			createCourseAndReviews(appDAO);
+//			retrieveCourseAndReviews(appDAO);
+			deleteCourseAndReviews(appDAO);
+		};
+
+
+	}
+
+	private void deleteCourseAndReviews(AppDAO appDAO) {
+		int theId = 10;
+		System.out.println("Deleting course id: " + theId);
+
+		appDAO.deleteCourseById(theId);
+
+		System.out.println("Done!");
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+		System.out.println("Done!");
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course tempCourse = new Course("Pacman - Home To Score One Million Points");
+
+		tempCourse.add(new Review("Great course ... loved it!"));
+		tempCourse.add(new Review("Cool course, job well done."));
+		tempCourse.add(new Review("What a dumb course, you are an idiot!"));
+
+		System.out.println("Saving the course");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+
+		appDAO.save(tempCourse);
+
+		System.out.println("Done!");
+
+	}
+
+	private void backup(AppDAO appDAO) {
+		//			createInstructor(appDAO);
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 
@@ -41,13 +86,10 @@ public class CruddemoApplication {
 
 //			updateCourse(appDAO);
 
-			deleteCourse(appDAO);
-		};
-
-
-
+//			deleteCourse(appDAO);
 
 	}
+
 
 	private void deleteCourse(AppDAO appDAO) {
 		int theId = 10;
