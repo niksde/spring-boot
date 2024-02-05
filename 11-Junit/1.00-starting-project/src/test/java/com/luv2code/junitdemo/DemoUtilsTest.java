@@ -1,6 +1,7 @@
 package com.luv2code.junitdemo;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -19,6 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DemoUtilsTest {
     DemoUtils demoUtils;
+
+    @Test
+    @DisplayName("Multiply")
+    @Order(2)
+    void testMultiply() {
+       assertEquals(12, demoUtils.multiply(4,3), "4*3 must be 12");
+    }
+
     @Test
     @DisplayName("Throws and Does not Throw")
     @Order(1)
@@ -60,7 +69,6 @@ class DemoUtilsTest {
     @Test
     @DisplayName("Same and Not Same")
     @Order(5)
-
     void testSameAndNotSame() {
 //        String str = "luv2Code Academy";
         String str = "luv2code";
