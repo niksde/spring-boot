@@ -37,7 +37,7 @@ public class StudentGrades {
 
     }
 
-    public List<Grade> getMathGradeResults() {
+    public List<Grade>  getMathGradeResults() {
         return mathGradeResults;
     }
 
