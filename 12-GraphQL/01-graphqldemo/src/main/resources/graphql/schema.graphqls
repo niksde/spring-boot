@@ -1,0 +1,47 @@
+
+
+type Query {
+    students: [Student]
+    studentById(id: ID) : Student
+}
+
+type Mutation {
+    addStudent(firstName: String
+        lastName: String
+        email: String
+        street: String
+        city: String
+        subjectsLearning: [subjectsLearningInput!]!
+    ): Student
+}
+
+type Student {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    street: String
+    city: String
+    learningSubjects: [LearningSubject]
+}
+
+type Address {
+    id: ID
+    street: String
+    city: String
+}
+
+type LearningSubject {
+    id: ID
+    subjectName: String
+    marksObtained: Int
+}
+
+input subjectsLearningInput {
+    subjectName: String
+    marksObtained: Int
+}
+
+
+
+
