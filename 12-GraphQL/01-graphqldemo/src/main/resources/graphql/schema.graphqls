@@ -1,6 +1,8 @@
 
 
 type Query {
+    firstQuery: String
+    secondQuery: String
     students: [Student]
     studentById(id: ID) : Student
 }
@@ -11,7 +13,7 @@ type Mutation {
         email: String
         street: String
         city: String
-        subjectsLearning: [subjectsLearningInput!]!
+        subjectsLearning: [SubjectsLearningInput!]!
     ): Student
 }
 
@@ -37,7 +39,7 @@ type LearningSubject {
     marksObtained: Int
 }
 
-input subjectsLearningInput {
+input SubjectsLearningInput {
     subjectName: String
     marksObtained: Int
 }
