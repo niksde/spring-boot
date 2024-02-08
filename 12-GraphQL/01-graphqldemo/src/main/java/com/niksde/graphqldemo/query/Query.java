@@ -1,6 +1,5 @@
 package com.niksde.graphqldemo.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.niksde.graphqldemo.entity.Student;
 import com.niksde.graphqldemo.request.CreateStudentRequest;
 import com.niksde.graphqldemo.response.StudentResponse;
@@ -10,19 +9,10 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.Arguments;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//@Component
-//public class Query implements GraphQLQueryResolver {
-//    public String firstQuery() {
-//        return "First Query";
-//    }
-//}
 
 @Controller
 public class Query {
