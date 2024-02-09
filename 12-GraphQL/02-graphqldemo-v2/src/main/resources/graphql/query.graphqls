@@ -1,7 +1,4 @@
-
-
 type Query {
-    firstQuery: String
     fullName(sampleRequest : SampleRequest): String
     students: [StudentResponse]
     student(id: ID) : StudentResponse
@@ -12,24 +9,22 @@ input SampleRequest {
     lastName: String
 }
 
-type Mutation {
-    addStudent(firstName: String!
-        lastName: String
-        email: String
-        street: String
-        city: String
-        subjectsLearning: [SubjectRequest]
-    ): StudentResponse
-}
-
 type StudentResponse {
     id: ID
     firstName: String
     lastName: String
+    fullName: String
     email: String
     street: String
     city: String
-    learningSubjects: [SubjectResponse]
+    learningSubjects(studentNameFilter: [SubjectNameFilter!]!): [SubjectResponse]
+}
+
+enum SubjectNameFilter {
+    All,
+    Java,
+    MySQL,
+    MongoDB
 }
 
 type Address {
@@ -43,12 +38,5 @@ type SubjectResponse {
     subjectName: String
     marksObtained: Float
 }
-
-input SubjectRequest {
-    subjectName: String
-    marksObtained: Float
-}
-
-
 
 

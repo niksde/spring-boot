@@ -2,13 +2,12 @@ package com.niksde.graphqldemo.query;
 
 import com.niksde.graphqldemo.entity.Student;
 import com.niksde.graphqldemo.request.CreateStudentRequest;
+import com.niksde.graphqldemo.request.SampleRequest;
 import com.niksde.graphqldemo.response.StudentResponse;
+import com.niksde.graphqldemo.response.SubjectResponse;
 import com.niksde.graphqldemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.Arguments;
-import org.springframework.graphql.data.method.annotation.MutationMapping;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -20,8 +19,8 @@ public class Query {
     @Autowired
     StudentService studentService;
 
-    @QueryMapping
-    public List<StudentResponse> students() {
+    @QueryMapping(name = "students")
+    public List<StudentResponse> getStudentList() {
         List<Student> studentList = studentService.getAllStudent();
         List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
         studentList.stream().forEach(student -> {
@@ -30,16 +29,20 @@ public class Query {
         return  studentResponseList;
     }
 
-    @QueryMapping
-    public StudentResponse studentById(@Argument Long id) {
-        Student student = studentService.getById(id);
-        return new StudentResponse(student);
+    @QueryMapping(name = "student")
+    public StudentResponse getStudent(@Argument long id) {
+        return new StudentResponse(studentService.getStudentById(id));
     }
 
     @MutationMapping(name = "addStudent")
     public StudentResponse createStudent(@Arguments CreateStudentRequest createStudentRequest) {
         Student student = studentService.createStudent(createStudentRequest);
         return new StudentResponse(student);
+    }
+
+    @QueryMapping
+    public String fullName(@Argument SampleRequest sampleRequest) {
+        return sampleRequest.getFirstName() + " " + sampleRequest.getLastName();
     }
 
 }

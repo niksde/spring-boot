@@ -1,8 +1,8 @@
 package com.niksde.graphqldemo.entity;
 
 import com.niksde.graphqldemo.request.CreateStudentRequest;
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
