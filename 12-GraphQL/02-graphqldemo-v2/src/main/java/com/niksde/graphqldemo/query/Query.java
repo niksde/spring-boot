@@ -1,10 +1,10 @@
 package com.niksde.graphqldemo.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.niksde.graphqldemo.entity.Student;
 import com.niksde.graphqldemo.request.SampleRequest;
 import com.niksde.graphqldemo.response.StudentResponse;
 import com.niksde.graphqldemo.service.StudentService;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

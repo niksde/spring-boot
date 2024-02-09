@@ -1,11 +1,11 @@
 package com.niksde.graphqldemo.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.niksde.graphqldemo.entity.Student;
 import com.niksde.graphqldemo.entity.Subject;
 import com.niksde.graphqldemo.enums.SubjectNameFilter;
 import com.niksde.graphqldemo.response.StudentResponse;
 import com.niksde.graphqldemo.response.SubjectResponse;
+import graphql.kickstart.tools.GraphQLResolver;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ public class StudentResponseResolver implements GraphQLResolver<StudentResponse>
 
         if(studentResponse.getStudent().getLearningSubjects() != null) {
             for (Subject subject : studentResponse.getStudent().getLearningSubjects()) {
-
                 if(subjectNameFilters.stream().filter(subjectNameFilter ->
                         subjectNameFilter.name().equalsIgnoreCase("ALL")
                         || subjectNameFilter.name().equalsIgnoreCase(subject.getSubjectName())
