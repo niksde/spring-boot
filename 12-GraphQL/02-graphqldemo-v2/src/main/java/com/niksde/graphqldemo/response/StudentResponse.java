@@ -2,10 +2,9 @@ package com.niksde.graphqldemo.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.niksde.graphqldemo.entity.Student;
-import com.niksde.graphqldemo.entity.Subject;
-import com.niksde.graphqldemo.request.CreateSubjectRequest;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentResponse {
@@ -27,6 +26,8 @@ public class StudentResponse {
 
     private Student student;
 
+    private String fullName;
+
     public StudentResponse(Student student) {
         this.student = student;
         id = student.getId();
@@ -36,13 +37,6 @@ public class StudentResponse {
 
         street = student.getAddress().getStreet();
         city = student.getAddress().getCity();
-
-//        if(student.getLearningSubjects() != null) {
-//            learningSubjects = new ArrayList<SubjectResponse>();
-//            for (Subject subject : student.getLearningSubjects()) {
-//                learningSubjects.add(new SubjectResponse(subject));
-//            }
-//        }
     }
 
 
@@ -108,5 +102,13 @@ public class StudentResponse {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

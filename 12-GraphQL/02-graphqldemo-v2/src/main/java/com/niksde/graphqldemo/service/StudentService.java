@@ -70,9 +70,10 @@ public class StudentService {
 
     public Student getStudentById(long id) {
         Optional<Student> student = studentRepository.findById(id);
-        if(student.isEmpty()) {
-            throw new RuntimeException("Invalid Id");
-        }
+
+//        if(student.isEmpty()) {
+//            throw new RuntimeException("Invalid Id");
+//        }
         return student.get();
     }
 }
