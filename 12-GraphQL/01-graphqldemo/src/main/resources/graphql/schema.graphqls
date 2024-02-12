@@ -1,7 +1,6 @@
 
 
 type Query {
-    firstQuery: String
     fullName(sampleRequest : SampleRequest): String
     students: [StudentResponse]
     student(id: ID) : StudentResponse
