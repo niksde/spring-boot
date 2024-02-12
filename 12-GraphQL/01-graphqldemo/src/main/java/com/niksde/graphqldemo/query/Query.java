@@ -1,6 +1,7 @@
 package com.niksde.graphqldemo.query;
 
 import com.niksde.graphqldemo.entity.Student;
+import com.niksde.graphqldemo.entity.Subject;
 import com.niksde.graphqldemo.request.CreateStudentRequest;
 import com.niksde.graphqldemo.request.SampleRequest;
 import com.niksde.graphqldemo.response.StudentResponse;
@@ -43,6 +44,21 @@ public class Query {
     @QueryMapping
     public String fullName(@Argument SampleRequest sampleRequest) {
         return sampleRequest.getFirstName() + " " + sampleRequest.getLastName();
+    }
+
+    @SchemaMapping
+    public List<SubjectResponse> learningSubjects (StudentResponse studentResponse) {
+        Student student = studentResponse.getStudent();
+
+        List<SubjectResponse> learningSubjects = new ArrayList<SubjectResponse>();
+
+        if(student.getLearningSubjects() != null) {
+            for (Subject subject : student.getLearningSubjects()) {
+                learningSubjects.add(new SubjectResponse(subject));
+            }
+        }
+
+        return learningSubjects;
     }
 
 }
